@@ -1,25 +1,20 @@
-import React, { lazy, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-// import ContactList from "./components/ContactList/ContactList";
-// import SearchBox from "./components/SearchBox/SearchBox";
-// import ContactForm from "./components/ContactForm/ContactForm";
-// import { fetchContacts } from "./redux/contactsOps";
+import { lazy, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./Layout";
-import { PrivateRoute } from "./PrivateRoute";
-import { RestrictedRoute } from "./RestrictedRoute";
+import { Layout } from "./components/Layout";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { RestrictedRoute } from "./components/RestrictedRoute";
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const RegistrationPage = lazy(() =>
-  import("./pages/RegistrationPage/RegistrationPage")
+  import("./pages/RegistrationPage/RegistrationPage.jsx")
 );
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
-const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
+const ContactsPage = lazy(() =>
+  import("./pages/ContactsPage/ContactsPage.jsx")
+);
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -53,7 +48,7 @@ export const App = () => {
         <Route
           path="/contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<contactsPage />} />
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
       </Routes>
@@ -62,16 +57,3 @@ export const App = () => {
 };
 
 export default App;
-
-//  <div className="app-container">
-//       <h1>Phonebook</h1>
-//       <div className="contact-form">
-//         <ContactForm />
-//       </div>
-//       <div className="search-box">
-//         <SearchBox />
-//       </div>
-//       <div className="contact-list">
-//         <ContactList />
-//       </div>
-//     </div>
