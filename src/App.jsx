@@ -84,9 +84,7 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return isRefreshing ? null : (
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -94,21 +92,21 @@ export const App = () => {
           path="/register"
           element={
             <RestrictedRoute
-              redirectTo="/contacts"
               component={<RegistrationPage />}
+              redirectTo="/contacts"
             />
           }
         />
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
           }
         />
         <Route
           path="/contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
           }
         />
       </Routes>

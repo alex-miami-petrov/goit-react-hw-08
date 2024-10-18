@@ -41,7 +41,7 @@ const LoginPage = () => {
             type="password"
           />
 
-          <button type="submit" className={s.btn}>
+          <button type="submit" className={s.logBtn}>
             Log In
           </button>
         </Form>

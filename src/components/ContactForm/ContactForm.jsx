@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 // import { addContact } from "../../redux/contactsSlice";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 // const formatPhoneNumber = (number) => {
 //   const cleaned = number.replace(/\D/g, "");

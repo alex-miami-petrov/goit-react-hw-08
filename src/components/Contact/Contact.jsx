@@ -9,7 +9,9 @@ const Contact = ({ name, number, onDelete }) => {
         <p className={s.contactNumber}>{number}</p>
       </div>
 
-      <button onClick={onDelete}>Delete</button>
+      <button className={s.btn} onClick={onDelete}>
+        Delete
+      </button>
     </div>
   );
 };

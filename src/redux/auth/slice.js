@@ -26,18 +26,28 @@ export const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      // .addCase(logout.fulfilled, () => {
+      //   initialState;
+
+      // })
       .addCase(logout.fulfilled, () => {
-        initialState();
-        // state.user = { name: null, email: null };
-        // state.token = null;
-        // state.isLoggedIn = false;
-        // state.contacts = [];
+        return {
+          user: {
+            name: null,
+            email: null,
+          },
+          token: null,
+          isLoggedIn: false,
+          isRefreshing: false,
+        };
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

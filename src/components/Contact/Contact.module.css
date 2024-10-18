@@ -19,6 +19,6 @@
   margin-right: auto;
 }
 
-button {
-  margin: unset;
+.btn {
+  margin: 0;
 }

@@ -18,8 +18,9 @@ import {
 
 const persistConfig = {
   key: "auth",
+  version: 1,
   storage,
-  whitelist: ["name", "email"],
+  whitelist: ["token"],
   blacklist: ["_persist"],
 };
 
@@ -39,7 +40,7 @@ export const store = configureStore({
     }),
 });
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 // export const store = configureStore({
 //   reducer: {
