@@ -1,15 +1,19 @@
+import { slideInFromRightScale } from "../../components/motion";
 import s from "./HomePage.module.css";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
     <>
       <div className={s.container}>
-        <h1 className={s.title}>
+        <motion.h1
+          initial="hidden"
+          animate="visible"
+          variants={slideInFromRightScale()}
+          className={s.title}
+        >
           Contacts manager welcome page{" "}
-          {/* <span role="img" aria-label="Greeting icon">
-            💁‍♀️
-          </span> */}
-        </h1>
+        </motion.h1>
       </div>
     </>
   );

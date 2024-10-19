@@ -66,6 +66,7 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { RestrictedRoute } from "./components/RestrictedRoute";
+import { AnimatePresence } from "framer-motion";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const RegistrationPage = lazy(() =>
@@ -85,32 +86,37 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? null : (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              component={<RegistrationPage />}
-              redirectTo="/contacts"
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
-          }
-        />
-      </Routes>
-    </Layout>
+    <AnimatePresence mode="wait">
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<RegistrationPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                component={<LoginPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            }
+          />
+        </Routes>
+      </Layout>
+    </AnimatePresence>
   );
 };
 

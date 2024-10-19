@@ -3,6 +3,8 @@ import React from "react";
 import s from "./RegistrationPage.module.css";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
+import { slideInFromRight } from "../../components/motion";
+import { motion } from "framer-motion";
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,11 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={slideInFromRight()}
+    >
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <Form className={s.form}>
           <label className={s.label} htmlFor="name">
@@ -51,7 +57,7 @@ const RegistrationPage = () => {
           </button>
         </Form>
       </Formik>
-    </div>
+    </motion.div>
   );
 };
 

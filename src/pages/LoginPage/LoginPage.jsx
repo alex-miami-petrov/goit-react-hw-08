@@ -3,6 +3,8 @@ import React from "react";
 import s from "./LoginPage.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
+import { motion } from "framer-motion";
+import { slideInFromRight } from "../../components/motion";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={slideInFromRight()}
+    >
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <Form className={s.form}>
           <label htmlFor="email" className={s.label}>
@@ -46,7 +52,7 @@ const LoginPage = () => {
           </button>
         </Form>
       </Formik>
-    </div>
+    </motion.div>
   );
 };
 

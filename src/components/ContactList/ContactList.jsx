@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteContact as deleteContactAsync } from "../../redux/contacts/operations";
 import { selectFilteredContacts } from "../../redux/filters/selectors";
 import { fetchContacts } from "../../redux/contacts/operations";
+import { AnimatePresence, motion } from "framer-motion";
+import { slideInFromRight } from "../motion";
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -28,15 +30,24 @@ const ContactList = () => {
 
   return (
     <ul className={s.contactList}>
-      {filteredContacts.map((contact) => (
-        <li key={contact.id} className={s.contactItem}>
-          <Contact
-            name={contact.name}
-            number={contact.number}
-            onDelete={() => handleDeleteContact(contact.id)}
-          />
-        </li>
-      ))}
+      <AnimatePresence mode="wait">
+        {filteredContacts.map((contact, idx) => (
+          <motion.li
+            exit="exit"
+            initial="hidden"
+            animate="visible"
+            variants={slideInFromRight(idx * 0.4)}
+            key={contact.id}
+            className={s.contactItem}
+          >
+            <Contact
+              name={contact.name}
+              number={contact.number}
+              onDelete={() => handleDeleteContact(contact.id)}
+            />
+          </motion.li>
+        ))}
+      </AnimatePresence>
     </ul>
   );
 };
