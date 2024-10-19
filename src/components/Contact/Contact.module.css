@@ -1,6 +1,7 @@
 .contactItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .contactName {
