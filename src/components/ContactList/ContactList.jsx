@@ -1,3 +1,5 @@
+// export default ContactList;
+
 import React, { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
@@ -30,14 +32,14 @@ const ContactList = () => {
 
   return (
     <ul className={s.contactList}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {filteredContacts.map((contact, idx) => (
           <motion.li
+            key={contact.id}
             exit="exit"
             initial="hidden"
             animate="visible"
             variants={slideInFromRight(idx * 0.4)}
-            key={contact.id}
             className={s.contactItem}
           >
             <Contact
